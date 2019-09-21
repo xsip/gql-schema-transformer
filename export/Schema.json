@@ -1,0 +1,245 @@
+{
+  "gqlEnums": [
+    {
+      "isStringEnum": true,
+      "name": "BillingPlan",
+      "values": [
+        "FREE",
+        "SOLO",
+        "TEAM"
+      ]
+    }
+  ],
+  "gqlInputs": [],
+  "gqlMutations": [
+    {
+      "params": [
+        {
+          "name": "email",
+          "type": "String",
+          "required": true,
+          "tsTypeGuess": "any"
+        },
+        {
+          "name": "invitationToken",
+          "type": "String",
+          "tsTypeGuess": "any"
+        },
+        {
+          "name": "password",
+          "type": "String",
+          "required": true,
+          "tsTypeGuess": "any"
+        }
+      ],
+      "name": "registerUser",
+      "returnType": "CurrentUser",
+      "definitionType": 1,
+      "returnTypeTsGuess": "CurrentUser"
+    },
+    {
+      "params": [
+        {
+          "name": "name",
+          "type": "String",
+          "required": true,
+          "tsTypeGuess": "any"
+        }
+      ],
+      "name": "registerCompany",
+      "returnType": "Company",
+      "definitionType": 1,
+      "returnTypeTsGuess": "Company"
+    },
+    {
+      "params": [
+        {
+          "name": "password",
+          "type": "String",
+          "required": true,
+          "tsTypeGuess": "any"
+        },
+        {
+          "name": "resetPasswordToken",
+          "type": "String",
+          "required": true,
+          "tsTypeGuess": "any"
+        }
+      ],
+      "name": "resetPassword",
+      "returnType": "CurrentUser",
+      "definitionType": 1,
+      "returnTypeTsGuess": "CurrentUser"
+    },
+    {
+      "params": [
+        {
+          "name": "email",
+          "type": "String",
+          "required": true,
+          "tsTypeGuess": "any"
+        },
+        {
+          "name": "password",
+          "type": "String",
+          "required": true,
+          "tsTypeGuess": "any"
+        }
+      ],
+      "name": "login",
+      "returnType": "CurrentUser",
+      "definitionType": 1,
+      "returnTypeTsGuess": "CurrentUser"
+    },
+    {
+      "params": [],
+      "name": "logout",
+      "returnType": "logout",
+      "definitionType": 1,
+      "returnTypeTsGuess": "any"
+    },
+    {
+      "params": [
+        {
+          "name": "input",
+          "type": "UpdateBillingInput",
+          "required": true,
+          "tsTypeGuess": "any"
+        }
+      ],
+      "name": "updateBilling",
+      "returnType": "Billing",
+      "definitionType": 1,
+      "returnTypeTsGuess": "Billing"
+    }
+  ],
+  "gqlQuerys": [
+    {
+      "params": [],
+      "name": "currentUser",
+      "returnType": "currentUser",
+      "definitionType": 0,
+      "returnTypeTsGuess": "CurrentUser"
+    },
+    {
+      "params": [],
+      "name": "billing",
+      "returnType": "billing",
+      "definitionType": 0,
+      "returnTypeTsGuess": "Billing"
+    }
+  ],
+  "gqlTypes": [
+    {
+      "name": "CurrentUser",
+      "propertys": [
+        {
+          "name": "id",
+          "type": "ID",
+          "tsTypeGuess": "any"
+        },
+        {
+          "name": "authToken",
+          "type": "String",
+          "tsTypeGuess": "any"
+        },
+        {
+          "name": "firstName",
+          "type": "String",
+          "tsTypeGuess": "any"
+        },
+        {
+          "name": "lastName",
+          "type": "String",
+          "tsTypeGuess": "any"
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "tsTypeGuess": "any"
+        },
+        {
+          "name": "mobile",
+          "type": "String",
+          "tsTypeGuess": "any"
+        },
+        {
+          "name": "isOwner",
+          "type": "Boolean",
+          "tsTypeGuess": "any"
+        },
+        {
+          "name": "company",
+          "type": "Company",
+          "tsTypeGuess": "Company"
+        }
+      ]
+    },
+    {
+      "name": "Company",
+      "propertys": [
+        {
+          "name": "id",
+          "type": "ID",
+          "tsTypeGuess": "any"
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "tsTypeGuess": "any"
+        }
+      ]
+    },
+    {
+      "name": "Billing",
+      "propertys": [
+        {
+          "name": "trialDaysLeft",
+          "type": "Int",
+          "tsTypeGuess": "any"
+        },
+        {
+          "name": "plan",
+          "type": "BillingPlan",
+          "tsTypeGuess": "BillingPlan"
+        },
+        {
+          "name": "card",
+          "type": "Card",
+          "tsTypeGuess": "Card"
+        },
+        {
+          "name": "nextPaymentDue",
+          "type": "String",
+          "tsTypeGuess": "any"
+        }
+      ]
+    },
+    {
+      "name": "Card",
+      "propertys": [
+        {
+          "name": "lastFourDigits",
+          "type": "String",
+          "tsTypeGuess": "any"
+        },
+        {
+          "name": "type",
+          "type": "String",
+          "tsTypeGuess": "any"
+        }
+      ]
+    }
+  ],
+  "gqlScalars": [],
+  "gqlAliasDefinitions": [
+    {
+      "name": "query",
+      "value": "RootQueryType"
+    },
+    {
+      "name": "mutation",
+      "value": "RootMutationType"
+    }
+  ]
+}

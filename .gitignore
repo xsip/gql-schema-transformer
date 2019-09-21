@@ -1,0 +1,7 @@
+node_modules/
+.npm
+dist/
+pseudocode/
+package-lock.json
+.DS_Store
+.idea/
