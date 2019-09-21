@@ -136,7 +136,7 @@
         {
           "name": "id",
           "type": "ID",
-          "tsTypeGuess": "any"
+          "tsTypeGuess": "string"
         },
         {
           "name": "authToken",
@@ -181,7 +181,7 @@
         {
           "name": "id",
           "type": "ID",
-          "tsTypeGuess": "any"
+          "tsTypeGuess": "string"
         },
         {
           "name": "name",

@@ -448,7 +448,12 @@ export class GqlSchemaTransformer {
 
         const customTypesLower: string[] = this.customGqlTypes.map(t => t = t.toLowerCase());
         const customGqlEnumsLower: string[] = this.customGqlEnums.map(t => t = t.toLowerCase());
-
+        const knownGqlTypesLower: { [index: string]: string } = {};
+        for (const type in this.knownGqlTypes) {
+            if (this.knownGqlTypes[type]) {
+                knownGqlTypesLower[type.toLowerCase()] = this.knownGqlTypes[type];
+            }
+        }
         const indexOfLowerTypes = customTypesLower.indexOf(gqlType);
         const indexOfLowerEnums = customGqlEnumsLower.indexOf(gqlType);
 
@@ -462,8 +467,8 @@ export class GqlSchemaTransformer {
             ret = this.customGqlTypes[indexOfLowerTypes];
         } else if (indexOfLowerEnums !== -1) {
             ret = this.customGqlEnums[indexOfLowerEnums];
-        } else if (this.knownGqlTypes[gqlType]) {
-            ret = this.knownGqlTypes[gqlType];
+        } else if (knownGqlTypesLower[gqlType]) {
+            ret = knownGqlTypesLower[gqlType];
         }
         if (ret !== 'any') {
             this.typesWritten++;
