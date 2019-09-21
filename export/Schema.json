@@ -18,18 +18,18 @@
           "name": "email",
           "type": "String",
           "required": true,
-          "tsTypeGuess": "any"
+          "tsTypeGuess": "string"
         },
         {
           "name": "invitationToken",
           "type": "String",
-          "tsTypeGuess": "any"
+          "tsTypeGuess": "string"
         },
         {
           "name": "password",
           "type": "String",
           "required": true,
-          "tsTypeGuess": "any"
+          "tsTypeGuess": "string"
         }
       ],
       "name": "registerUser",
@@ -43,7 +43,7 @@
           "name": "name",
           "type": "String",
           "required": true,
-          "tsTypeGuess": "any"
+          "tsTypeGuess": "string"
         }
       ],
       "name": "registerCompany",
@@ -57,13 +57,13 @@
           "name": "password",
           "type": "String",
           "required": true,
-          "tsTypeGuess": "any"
+          "tsTypeGuess": "string"
         },
         {
           "name": "resetPasswordToken",
           "type": "String",
           "required": true,
-          "tsTypeGuess": "any"
+          "tsTypeGuess": "string"
         }
       ],
       "name": "resetPassword",
@@ -77,13 +77,13 @@
           "name": "email",
           "type": "String",
           "required": true,
-          "tsTypeGuess": "any"
+          "tsTypeGuess": "string"
         },
         {
           "name": "password",
           "type": "String",
           "required": true,
-          "tsTypeGuess": "any"
+          "tsTypeGuess": "string"
         }
       ],
       "name": "login",
@@ -141,32 +141,32 @@
         {
           "name": "authToken",
           "type": "String",
-          "tsTypeGuess": "any"
+          "tsTypeGuess": "string"
         },
         {
           "name": "firstName",
           "type": "String",
-          "tsTypeGuess": "any"
+          "tsTypeGuess": "string"
         },
         {
           "name": "lastName",
           "type": "String",
-          "tsTypeGuess": "any"
+          "tsTypeGuess": "string"
         },
         {
           "name": "email",
           "type": "String",
-          "tsTypeGuess": "any"
+          "tsTypeGuess": "string"
         },
         {
           "name": "mobile",
           "type": "String",
-          "tsTypeGuess": "any"
+          "tsTypeGuess": "string"
         },
         {
           "name": "isOwner",
           "type": "Boolean",
-          "tsTypeGuess": "any"
+          "tsTypeGuess": "boolean"
         },
         {
           "name": "company",
@@ -186,7 +186,7 @@
         {
           "name": "name",
           "type": "String",
-          "tsTypeGuess": "any"
+          "tsTypeGuess": "string"
         }
       ]
     },
@@ -196,7 +196,7 @@
         {
           "name": "trialDaysLeft",
           "type": "Int",
-          "tsTypeGuess": "any"
+          "tsTypeGuess": "number"
         },
         {
           "name": "plan",
@@ -211,7 +211,7 @@
         {
           "name": "nextPaymentDue",
           "type": "String",
-          "tsTypeGuess": "any"
+          "tsTypeGuess": "string"
         }
       ]
     },
@@ -221,12 +221,12 @@
         {
           "name": "lastFourDigits",
           "type": "String",
-          "tsTypeGuess": "any"
+          "tsTypeGuess": "string"
         },
         {
           "name": "type",
           "type": "String",
-          "tsTypeGuess": "any"
+          "tsTypeGuess": "string"
         }
       ]
     }

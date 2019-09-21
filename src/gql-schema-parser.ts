@@ -396,31 +396,18 @@ export class GqlSchemaTransformer {
             if (type.indexOf(this.mutationDescriber()) !== -1) {
                 this.extractMutations(type);
                 this.mutationStringList.map(mutationString => {
-                    // try {
                     this.gqlMutations.push(this.queryOrMutationStringToObject(mutationString, GqlFunctionType.Mutation));
-                    /*} catch (e) {
-                        this.gqlTypes.push(this.parseQqlTypeDefinitionString(type));
-                        this.customGqlTypes.push(this.gqlTypes[this.gqlTypes.length - 1].name);
-                    }*/
                 });
             } else if (type.indexOf(this.queryDescriber()) !== -1) {
                 this.extractQuerys(type);
                 this.queryStringList.map(queryString => {
-
                     this.gqlQuerys.push(this.queryOrMutationStringToObject(queryString, GqlFunctionType.Query));
-                    /*catch (e) {
-                    this.gqlTypes.push(this.parseQqlTypeDefinitionString(type));
-                    this.customGqlTypes.push(this.gqlTypes[this.gqlTypes.length - 1].name);
-                }*/
                 });
             } else if (this.typeEntryIsRealType(type)) {
-
                 this.gqlTypes.push(this.parseQqlTypeDefinitionString(type));
                 this.customGqlTypes.push(this.gqlTypes[this.gqlTypes.length - 1].name);
             }
-
         });
-
     }
 
     private parseInputList(): void {
@@ -454,17 +441,22 @@ export class GqlSchemaTransformer {
     }
 
     private guessTypescriptType(gqlType: string, isArray?: boolean): string {
+
         let ret = 'any';
+
         gqlType = gqlType.toLowerCase();
+
         const customTypesLower: string[] = this.customGqlTypes.map(t => t = t.toLowerCase());
         const customGqlEnumsLower: string[] = this.customGqlEnums.map(t => t = t.toLowerCase());
+
         const indexOfLowerTypes = customTypesLower.indexOf(gqlType);
         const indexOfLowerEnums = customGqlEnumsLower.indexOf(gqlType);
-        if (gqlType === 'Int' || gqlType === 'Float') {
+
+        if (gqlType === 'int' || gqlType === 'float') {
             ret = 'number';
-        } else if (gqlType === 'String') {
+        } else if (gqlType === 'string') {
             ret = 'string';
-        } else if (gqlType === 'Boolean') {
+        } else if (gqlType === 'boolean') {
             ret = 'boolean';
         } else if (indexOfLowerTypes !== -1) {
             ret = this.customGqlTypes[indexOfLowerTypes];

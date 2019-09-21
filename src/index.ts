@@ -5,6 +5,7 @@ import {generatorConfig} from './utils/config';
 import {GqlSchemaTransformer} from './gql-schema-parser';
 import {LogInfoExtension} from './tranform-extensions/log-info-extension';
 import {ToJsonExtension} from './tranform-extensions/to-json-extension';
+import {ToAngularServiceExportExtension} from './tranform-extensions/angular-service-extension/to-angular-service-export-extension';
 
 
 let knownTypes: KnownGqlTypes = [] as any;
@@ -26,6 +27,6 @@ transformer.parse();
 if (transformer.succeeded()) {
     transformer.transformUsingExtension(ToJsonExtension, generatorConfig.gqlSchemaJsonExportFIle);
     transformer.transformUsingExtension(LogInfoExtension);
-    // transformer.transformUsingExtension(ToAngularServiceExportExtension, 'no export file path yet');
+    transformer.transformUsingExtension(ToAngularServiceExportExtension, 'no export file path yet');
 
 }
