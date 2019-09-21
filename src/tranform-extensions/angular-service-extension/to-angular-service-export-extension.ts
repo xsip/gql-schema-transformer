@@ -12,73 +12,6 @@ import {
 import * as fs from 'fs';
 import {generatorConfig} from '../../utils/config';
 
-enum RegexHelper {
-    UnknownContent = '((.|\n)*?)' as any,
-    SameAsFirstMatch = '\\1' as any
-}
-
-enum RegexExecResult {
-    FullMatch = 0,
-    TagName = 1,
-    Unknown = 2,
-    Content = 3,
-    Unknown2 = 4,
-}
-
-class TemplateParser {
-    enumsAsTypes: boolean;
-
-    matchInContent(match: RegExp): string[] {
-        const res: string[] | null = this.content.match(match);
-        if (!res) {
-            return [];
-        }
-        return res;
-    }
-
-    constructor(private content: string) {
-    }
-
-    getTags(tagMustContain: string = ''): string[] {
-        return this.matchInContent(
-            new RegExp(`{{${
-                RegexHelper.UnknownContent}${tagMustContain}}}${
-                RegexHelper.UnknownContent}{{/${RegexHelper.SameAsFirstMatch}${tagMustContain}}}`, 'g'));
-    }
-
-    getStandaloneTags(tagMustContain: string = ''): string[] {
-        return this.matchInContent(
-            new RegExp(`{{var-${RegexHelper.UnknownContent}${tagMustContain}}}`, 'g'));
-    }
-
-    getAllVars() {
-        const tagMustContain: string = '-loop';
-        // const additionalTagAdd = '-loop';
-        const regex: RegExp = new RegExp(`{{${
-            RegexHelper.UnknownContent}${tagMustContain}}}${
-            RegexHelper.UnknownContent}{{/${RegexHelper.SameAsFirstMatch}${tagMustContain}}}`, 'g');
-
-        this.getTags('-loop').map(loop => {
-            console.log('loop ?>' + loop);
-            const destructedLoop: any[] = regex.exec(this.content);
-            const propName: string = destructedLoop[RegexExecResult.TagName];
-        });
-    }
-
-    getAllLoops() {
-        const tagMustContain: string = '-loop';
-        // const additionalTagAdd = '-loop';
-        const regex: RegExp = new RegExp(`{{${
-            RegexHelper.UnknownContent}${tagMustContain}}}${
-            RegexHelper.UnknownContent}{{/${RegexHelper.SameAsFirstMatch}${tagMustContain}}}`, 'g');
-
-        this.getTags('-loop').map(loop => {
-            console.log('loop ?>' + loop);
-            const destructedLoop: any[] = regex.exec(this.content);
-            const propName: string = destructedLoop[RegexExecResult.TagName];
-        });
-    }
-}
 
 export class ToAngularServiceExportExtension implements TransformExtensionClass {
     enumAsType: boolean;
@@ -90,7 +23,7 @@ export class ToAngularServiceExportExtension implements TransformExtensionClass 
     }
 
     export(data: GqlSchemaDataCollection, exportFilePath: string) {
-        let exportData: string = '';
+        let exportData = '';
         this.data = data;
         this.reduceTypes();
 
@@ -121,7 +54,7 @@ export class ToAngularServiceExportExtension implements TransformExtensionClass 
 
     getTypescriptInterfaceCode(t: GqlObjectTypeDefinition): string {
         const tmp: string = interfaceTemplate.replace('{{name}}', t.name);
-        let propertyList: string = '';
+        let propertyList = '';
         t.propertys.map(p => {
             propertyList += this.getTypescriptInterfaceProperty(p) + '\n';
         });
@@ -142,7 +75,7 @@ export class ToAngularServiceExportExtension implements TransformExtensionClass 
     }
 
     getEnumsAsTypescriptDefinitions(): string {
-        let enumList: string = '';
+        let enumList = '';
         this.data.gqlEnums.map(e => {
             enumList += this.getTypescriptEnumCode(e);
         });
@@ -150,7 +83,7 @@ export class ToAngularServiceExportExtension implements TransformExtensionClass 
     }
 
     getInterfacesAsTypescriptDefinitions(): string {
-        let interfaceList: string = '';
+        let interfaceList = '';
         this.data.gqlTypes.map(t => {
             interfaceList += this.getTypescriptInterfaceCode(t);
         });
