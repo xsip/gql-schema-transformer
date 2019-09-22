@@ -4,7 +4,7 @@ import {
     GqlObjectTypeDefinition,
     GqlObjectTypeProperty,
     KnownGqlTypes,
-    GqlFunctionParameterDefinition
+    GqlFunctionParameterDefinition, DefaultGqlTypes
 } from './definitions';
 
 import {TextfileContent} from './utils/textfile-content';
@@ -457,11 +457,11 @@ export class GqlSchemaTransformer {
         const indexOfLowerTypes = customTypesLower.indexOf(gqlType);
         const indexOfLowerEnums = customGqlEnumsLower.indexOf(gqlType);
 
-        if (gqlType === 'int' || gqlType === 'float') {
+        if (gqlType === DefaultGqlTypes.Int || gqlType === DefaultGqlTypes.Float) {
             ret = 'number';
-        } else if (gqlType === 'string') {
+        } else if (gqlType === DefaultGqlTypes.String) {
             ret = 'string';
-        } else if (gqlType === 'boolean') {
+        } else if (gqlType === DefaultGqlTypes.Boolean) {
             ret = 'boolean';
         } else if (indexOfLowerTypes !== -1) {
             ret = this.customGqlTypes[indexOfLowerTypes];
