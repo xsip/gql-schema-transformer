@@ -35,7 +35,67 @@
       "name": "registerUser",
       "returnType": "CurrentUser",
       "definitionType": 1,
-      "returnTypeTsGuess": "CurrentUser"
+      "returnTypeTsGuess": "CurrentUser",
+      "returnTypeDefCpy": {
+        "name": "CurrentUser",
+        "propertys": [
+          {
+            "name": "id",
+            "type": "ID",
+            "tsTypeGuess": "string"
+          },
+          {
+            "name": "authToken",
+            "type": "String",
+            "tsTypeGuess": "string"
+          },
+          {
+            "name": "firstName",
+            "type": "String",
+            "tsTypeGuess": "string"
+          },
+          {
+            "name": "lastName",
+            "type": "String",
+            "tsTypeGuess": "string"
+          },
+          {
+            "name": "email",
+            "type": "String",
+            "tsTypeGuess": "string"
+          },
+          {
+            "name": "mobile",
+            "type": "String",
+            "tsTypeGuess": "string"
+          },
+          {
+            "name": "isOwner",
+            "type": "Boolean",
+            "tsTypeGuess": "boolean"
+          },
+          {
+            "name": "company",
+            "type": "Company",
+            "tsTypeGuess": "Company",
+            "objectDefCopy": {
+              "name": "Company",
+              "propertys": [
+                {
+                  "name": "id",
+                  "type": "ID",
+                  "tsTypeGuess": "string"
+                },
+                {
+                  "name": "name",
+                  "type": "String",
+                  "tsTypeGuess": "string"
+                }
+              ]
+            }
+          }
+        ]
+      }
     },
     {
       "params": [
@@ -49,7 +109,22 @@
       "name": "registerCompany",
       "returnType": "Company",
       "definitionType": 1,
-      "returnTypeTsGuess": "Company"
+      "returnTypeTsGuess": "Company",
+      "returnTypeDefCpy": {
+        "name": "Company",
+        "propertys": [
+          {
+            "name": "id",
+            "type": "ID",
+            "tsTypeGuess": "string"
+          },
+          {
+            "name": "name",
+            "type": "String",
+            "tsTypeGuess": "string"
+          }
+        ]
+      }
     },
     {
       "params": [
@@ -69,7 +144,67 @@
       "name": "resetPassword",
       "returnType": "CurrentUser",
       "definitionType": 1,
-      "returnTypeTsGuess": "CurrentUser"
+      "returnTypeTsGuess": "CurrentUser",
+      "returnTypeDefCpy": {
+        "name": "CurrentUser",
+        "propertys": [
+          {
+            "name": "id",
+            "type": "ID",
+            "tsTypeGuess": "string"
+          },
+          {
+            "name": "authToken",
+            "type": "String",
+            "tsTypeGuess": "string"
+          },
+          {
+            "name": "firstName",
+            "type": "String",
+            "tsTypeGuess": "string"
+          },
+          {
+            "name": "lastName",
+            "type": "String",
+            "tsTypeGuess": "string"
+          },
+          {
+            "name": "email",
+            "type": "String",
+            "tsTypeGuess": "string"
+          },
+          {
+            "name": "mobile",
+            "type": "String",
+            "tsTypeGuess": "string"
+          },
+          {
+            "name": "isOwner",
+            "type": "Boolean",
+            "tsTypeGuess": "boolean"
+          },
+          {
+            "name": "company",
+            "type": "Company",
+            "tsTypeGuess": "Company",
+            "objectDefCopy": {
+              "name": "Company",
+              "propertys": [
+                {
+                  "name": "id",
+                  "type": "ID",
+                  "tsTypeGuess": "string"
+                },
+                {
+                  "name": "name",
+                  "type": "String",
+                  "tsTypeGuess": "string"
+                }
+              ]
+            }
+          }
+        ]
+      }
     },
     {
       "params": [
@@ -89,7 +224,67 @@
       "name": "login",
       "returnType": "CurrentUser",
       "definitionType": 1,
-      "returnTypeTsGuess": "CurrentUser"
+      "returnTypeTsGuess": "CurrentUser",
+      "returnTypeDefCpy": {
+        "name": "CurrentUser",
+        "propertys": [
+          {
+            "name": "id",
+            "type": "ID",
+            "tsTypeGuess": "string"
+          },
+          {
+            "name": "authToken",
+            "type": "String",
+            "tsTypeGuess": "string"
+          },
+          {
+            "name": "firstName",
+            "type": "String",
+            "tsTypeGuess": "string"
+          },
+          {
+            "name": "lastName",
+            "type": "String",
+            "tsTypeGuess": "string"
+          },
+          {
+            "name": "email",
+            "type": "String",
+            "tsTypeGuess": "string"
+          },
+          {
+            "name": "mobile",
+            "type": "String",
+            "tsTypeGuess": "string"
+          },
+          {
+            "name": "isOwner",
+            "type": "Boolean",
+            "tsTypeGuess": "boolean"
+          },
+          {
+            "name": "company",
+            "type": "Company",
+            "tsTypeGuess": "Company",
+            "objectDefCopy": {
+              "name": "Company",
+              "propertys": [
+                {
+                  "name": "id",
+                  "type": "ID",
+                  "tsTypeGuess": "string"
+                },
+                {
+                  "name": "name",
+                  "type": "String",
+                  "tsTypeGuess": "string"
+                }
+              ]
+            }
+          }
+        ]
+      }
     },
     {
       "params": [],
@@ -110,7 +305,47 @@
       "name": "updateBilling",
       "returnType": "Billing",
       "definitionType": 1,
-      "returnTypeTsGuess": "Billing"
+      "returnTypeTsGuess": "Billing",
+      "returnTypeDefCpy": {
+        "name": "Billing",
+        "propertys": [
+          {
+            "name": "trialDaysLeft",
+            "type": "Int",
+            "tsTypeGuess": "number"
+          },
+          {
+            "name": "plan",
+            "type": "BillingPlan",
+            "tsTypeGuess": "BillingPlan"
+          },
+          {
+            "name": "card",
+            "type": "Card",
+            "tsTypeGuess": "Card",
+            "objectDefCopy": {
+              "name": "Card",
+              "propertys": [
+                {
+                  "name": "lastFourDigits",
+                  "type": "String",
+                  "tsTypeGuess": "string"
+                },
+                {
+                  "name": "type",
+                  "type": "String",
+                  "tsTypeGuess": "string"
+                }
+              ]
+            }
+          },
+          {
+            "name": "nextPaymentDue",
+            "type": "String",
+            "tsTypeGuess": "string"
+          }
+        ]
+      }
     }
   ],
   "gqlQuerys": [
@@ -119,14 +354,114 @@
       "name": "currentUser",
       "returnType": "currentUser",
       "definitionType": 0,
-      "returnTypeTsGuess": "CurrentUser"
+      "returnTypeTsGuess": "CurrentUser",
+      "returnTypeDefCpy": {
+        "name": "CurrentUser",
+        "propertys": [
+          {
+            "name": "id",
+            "type": "ID",
+            "tsTypeGuess": "string"
+          },
+          {
+            "name": "authToken",
+            "type": "String",
+            "tsTypeGuess": "string"
+          },
+          {
+            "name": "firstName",
+            "type": "String",
+            "tsTypeGuess": "string"
+          },
+          {
+            "name": "lastName",
+            "type": "String",
+            "tsTypeGuess": "string"
+          },
+          {
+            "name": "email",
+            "type": "String",
+            "tsTypeGuess": "string"
+          },
+          {
+            "name": "mobile",
+            "type": "String",
+            "tsTypeGuess": "string"
+          },
+          {
+            "name": "isOwner",
+            "type": "Boolean",
+            "tsTypeGuess": "boolean"
+          },
+          {
+            "name": "company",
+            "type": "Company",
+            "tsTypeGuess": "Company",
+            "objectDefCopy": {
+              "name": "Company",
+              "propertys": [
+                {
+                  "name": "id",
+                  "type": "ID",
+                  "tsTypeGuess": "string"
+                },
+                {
+                  "name": "name",
+                  "type": "String",
+                  "tsTypeGuess": "string"
+                }
+              ]
+            }
+          }
+        ]
+      }
     },
     {
       "params": [],
       "name": "billing",
       "returnType": "billing",
       "definitionType": 0,
-      "returnTypeTsGuess": "Billing"
+      "returnTypeTsGuess": "Billing",
+      "returnTypeDefCpy": {
+        "name": "Billing",
+        "propertys": [
+          {
+            "name": "trialDaysLeft",
+            "type": "Int",
+            "tsTypeGuess": "number"
+          },
+          {
+            "name": "plan",
+            "type": "BillingPlan",
+            "tsTypeGuess": "BillingPlan"
+          },
+          {
+            "name": "card",
+            "type": "Card",
+            "tsTypeGuess": "Card",
+            "objectDefCopy": {
+              "name": "Card",
+              "propertys": [
+                {
+                  "name": "lastFourDigits",
+                  "type": "String",
+                  "tsTypeGuess": "string"
+                },
+                {
+                  "name": "type",
+                  "type": "String",
+                  "tsTypeGuess": "string"
+                }
+              ]
+            }
+          },
+          {
+            "name": "nextPaymentDue",
+            "type": "String",
+            "tsTypeGuess": "string"
+          }
+        ]
+      }
     }
   ],
   "gqlTypes": [
@@ -171,7 +506,22 @@
         {
           "name": "company",
           "type": "Company",
-          "tsTypeGuess": "Company"
+          "tsTypeGuess": "Company",
+          "objectDefCopy": {
+            "name": "Company",
+            "propertys": [
+              {
+                "name": "id",
+                "type": "ID",
+                "tsTypeGuess": "string"
+              },
+              {
+                "name": "name",
+                "type": "String",
+                "tsTypeGuess": "string"
+              }
+            ]
+          }
         }
       ]
     },
@@ -206,7 +556,22 @@
         {
           "name": "card",
           "type": "Card",
-          "tsTypeGuess": "Card"
+          "tsTypeGuess": "Card",
+          "objectDefCopy": {
+            "name": "Card",
+            "propertys": [
+              {
+                "name": "lastFourDigits",
+                "type": "String",
+                "tsTypeGuess": "string"
+              },
+              {
+                "name": "type",
+                "type": "String",
+                "tsTypeGuess": "string"
+              }
+            ]
+          }
         },
         {
           "name": "nextPaymentDue",

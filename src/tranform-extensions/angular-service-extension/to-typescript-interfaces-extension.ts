@@ -7,13 +7,14 @@ import {
     optionalPropertyTemplate,
     requiredPropertyTemplate
 } from './definitions/templates';
-import {ReducedGqlTypes} from './definitions';
+import {GqlDefReduced} from './definitions';
 
 export class ToTypescriptInterfacesExtension implements TransformExtensionClass {
 
     enumAsType: boolean;
     private data: GqlSchemaDataCollection;
-    private reducedTypes: ReducedGqlTypes = {};
+    private reducedTypes: GqlDefReduced<GqlObjectTypeDefinition> = {};
+    private reducedEnums: GqlDefReduced<GqlEnumTypeDefinition> = {};
 
     constructor() {
 
@@ -25,7 +26,7 @@ export class ToTypescriptInterfacesExtension implements TransformExtensionClass 
 
 
         this.data = data;
-        this.reduceTypes();
+        this.reduceTypesAndEnums();
 
         this.exportData += this.getEnumsAsTypescriptDefinitions();
         this.exportData += this.getInterfacesAsTypescriptDefinitions();
@@ -37,13 +38,20 @@ export class ToTypescriptInterfacesExtension implements TransformExtensionClass 
         return this.exportData;
     }
 
-    getReducedTypes(): ReducedGqlTypes {
+    getReducedTypes(): GqlDefReduced<GqlObjectTypeDefinition> {
         return this.reducedTypes;
     }
 
-    reduceTypes() {
+    getReducedEnums(): GqlDefReduced<GqlEnumTypeDefinition> {
+        return this.reducedEnums;
+    }
+
+    reduceTypesAndEnums() {
         this.data.gqlTypes.map(type => {
             this.reducedTypes[type.name] = type;
+        });
+        this.data.gqlEnums.map(en => {
+            this.reducedEnums[en.name] = en;
         });
     }
 

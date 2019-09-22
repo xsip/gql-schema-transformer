@@ -8,7 +8,8 @@ import {
 } from './definitions';
 
 import {TextfileContent} from './utils/textfile-content';
-import {TransformExtensionClass} from './tranform-extensions/definitions';
+import {GqlSchemaDataCollection, TransformExtensionClass} from './tranform-extensions/definitions';
+import {GqlDefReduced} from './tranform-extensions/angular-service-extension/definitions';
 
 
 enum DescriberList {
@@ -36,18 +37,18 @@ enum RegexHelper {
 
 export class GqlSchemaTransformer {
 
-    schemaContent: TextfileContent;
-
 
     constructor(private gqlSchemaPath: string, private knownGqlTypes: KnownGqlTypes, private isStringEnum: boolean = true) {
         this.schemaContent = new TextfileContent(gqlSchemaPath);
     }
 
+    schemaContent: TextfileContent;
+
     private anysWritten = 0;
     private typesWritten = 0;
     private describerValueSeperator = '=';
     private debug = false;
-
+    private copyTypeDefsToFunctions = true;
     private gqlTypes: GqlObjectTypeDefinition[] = [];
     private gqlQuerys: GqlFunctionTypeDefinition[] = [];
     private gqlMutations: GqlFunctionTypeDefinition[] = [];
@@ -65,7 +66,11 @@ export class GqlSchemaTransformer {
 
     private customGqlTypes: string[] = [];
     private customGqlEnums: string[] = [];
-    private fileParsed: boolean = false;
+    private fileParsed = false;
+
+    private customQueryDescriber = '';
+
+    private customMutationDescriber = '';
     public succeeded = (): boolean => this.fileParsed;
 
     public parse() {
@@ -80,13 +85,56 @@ export class GqlSchemaTransformer {
             this.parseInputList();
             this.parseEnumList();
             this.guessTypes();
+
+            if (this.copyTypeDefsToFunctions) {
+                this.addCopyOfTypeDefsToFunctionsAndPropertys();
+            }
+
             this.fileParsed = true;
+
         } catch (e) {
             console.log(`PARSING FAILED!!`);
             console.log(e);
             this.fileParsed = false;
         }
 
+    }
+
+
+    private addCopyOfTypeDefsToFunctionsAndPropertys(): void {
+
+        const reducedTypes: GqlDefReduced<GqlObjectTypeDefinition> = {};
+        this.gqlTypes.map(t => {
+            reducedTypes[t.name] = t;
+        });
+        const addTypeDefinitionToTypeProperty = (prop: GqlObjectTypeProperty) => {
+            prop.objectDefCopy = reducedTypes[prop.tsTypeGuess];
+            if (prop.objectDefCopy) {
+                prop.objectDefCopy.propertys.map(prop2 => {
+                    if (reducedTypes[prop2.tsTypeGuess]) {
+                        addTypeDefinitionToTypeProperty(prop2);
+                    }
+                });
+            }
+
+        };
+        const addTypeDefinitionForReturnTypeToFunction = (querys: GqlFunctionTypeDefinition[]) => {
+            querys.map((query) => {
+                const escapedType: string = query.returnTypeTsGuess;
+                query.returnTypeDefCpy = reducedTypes[escapedType];
+                if (query.returnTypeDefCpy) {
+                    query.returnTypeDefCpy.propertys.map(prop => {
+                        if (reducedTypes[prop.tsTypeGuess]) {
+                            addTypeDefinitionToTypeProperty(prop);
+                        }
+                    });
+                }
+                // console.log(`Added ${escapedType} to ${query.name}`);
+                // console.log(reducedTypes[escapedType]);
+            });
+        };
+        addTypeDefinitionForReturnTypeToFunction(this.gqlQuerys);
+        addTypeDefinitionForReturnTypeToFunction(this.gqlMutations);
     }
 
     public transformUsingExtension(extension: TransformExtensionClass & any, exportPath?: string): void {
@@ -152,10 +200,7 @@ export class GqlSchemaTransformer {
         this.replaceInSchema(toRemove, '');
     }
 
-    private customQueryDescriber = '';
     private queryDescriber = (): string => this.customQueryDescriber !== '' ? this.customQueryDescriber : DescriberList.QUERYS;
-
-    private customMutationDescriber = '';
     private mutationDescriber = (): string => this.customMutationDescriber !== '' ? this.customMutationDescriber : DescriberList.MUTATIONS;
 
     private matchInSchema(regexp: string | RegExp): string[] {
@@ -378,7 +423,7 @@ export class GqlSchemaTransformer {
         this.availableGqlTypeNames.push(typeObject.name);
         return {
             name: typeObject.name,
-            propertys
+            propertys: propertys ? propertys : []
         };
     }
 
