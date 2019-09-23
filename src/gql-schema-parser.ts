@@ -77,7 +77,7 @@ export class GqlSchemaTransformer {
         try {
             this.removeComments();
             this.cleanSchema();
-            this.extractSchema();
+            this.extractAliases();
             // fs.writeFileSync(generatorConfig.gqlFormatedSchemmaLocation, this.gqlSchema, 'utf8');
 
             this.extractScalarList();
@@ -211,7 +211,7 @@ export class GqlSchemaTransformer {
         return [];
     }
 
-    private extractSchema(): void {
+    private extractAliases(): void {
         const result: string[] =
             this.matchInSchema(
                 new RegExp(`${DescriberList.SCHEMA}${this.describerValueSeperator}{${RegexHelper.UnknownContent}}`, 'g'));
